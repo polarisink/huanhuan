@@ -2,6 +2,8 @@ name: Windows x64 Release
 
 on:
   push:
+    branches:
+      - main # 首次注册工作流并验证 Windows 构建，验证后移除此入口。
     tags:
       - '**'
   workflow_dispatch:
