@@ -1,0 +1,37 @@
+.root {
+    -fx-font-family: "Noto Sans CJK SC";
+    -fx-font-size: 13px;
+    -fx-text-fill: #203044;
+    -fx-accent: #147d72;
+    -fx-focus-color: #147d72;
+    -fx-faint-focus-color: #147d7220;
+}
+.page { -fx-background-color: #f4f7fa; }
+.label { -fx-text-fill: #203044; }
+.title { -fx-font-size: 25px; -fx-font-weight: bold; }
+.subtitle { -fx-font-size: 13px; -fx-text-fill: #6a7787; }
+.badge { -fx-padding: 6 11; -fx-background-color: #e3f0ed; -fx-background-radius: 20; -fx-text-fill: #28786d; -fx-font-size: 11px; }
+.form-card { -fx-background-color: white; -fx-background-radius: 14; -fx-border-color: #e3e9ef; -fx-border-radius: 14; }
+.section-title { -fx-font-size: 15px; -fx-font-weight: bold; }
+.muted { -fx-text-fill: #738091; -fx-font-size: 12px; }
+.text-field { -fx-background-color: #f7f9fb; -fx-border-color: #dfe6ed; -fx-border-radius: 7; -fx-background-radius: 7; -fx-padding: 11 12; }
+.text-field:focused { -fx-border-color: #147d72; }
+.button { -fx-background-color: white; -fx-border-color: #d3dce5; -fx-border-radius: 7; -fx-background-radius: 7; -fx-padding: 11 18; -fx-cursor: hand; }
+.button:hover { -fx-background-color: #f0f5f7; -fx-border-color: #9bb6bc; }
+.button:focused { -fx-border-color: #147d72; }
+.button.settings-button { -fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: #52677c; -fx-padding: 8 12; }
+.button.settings-button:hover { -fx-background-color: #e7edf2; }
+.button.settings-button:focused { -fx-border-color: #147d72; }
+.button.primary { -fx-background-color: #147d72; -fx-border-color: #147d72; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 24; }
+.button.primary:hover { -fx-background-color: #106c62; }
+.button:disabled { -fx-opacity: 0.6; }
+.separator .line { -fx-border-color: #edf1f5; -fx-border-width: 1 0 0 0; }
+.status-card { -fx-background-color: #eaf0f4; -fx-background-radius: 12; }
+.state-title { -fx-font-size: 15px; -fx-font-weight: bold; }
+.status-message { -fx-text-fill: #617285; -fx-font-size: 12px; }
+.error-text { -fx-text-fill: #b53838; }
+.success-text { -fx-text-fill: #147d72; }
+.progress-bar > .track { -fx-background-color: #dce5eb; -fx-background-radius: 8; }
+.progress-bar > .bar { -fx-background-color: #147d72; -fx-background-radius: 8; -fx-padding: 3; -fx-background-insets: 0; }
+.hyperlink { -fx-text-fill: #147d72; -fx-font-size: 12px; -fx-padding: 2 0; }
+.footer { -fx-text-fill: #8a97a5; -fx-font-size: 11px; }

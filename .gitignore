@@ -1,0 +1,10 @@
+/target/
+/dist/
+/.tools/
+/.idea/
+/files/
+.env
+.env.*
+*.iml
+.DS_Store
+*.log
