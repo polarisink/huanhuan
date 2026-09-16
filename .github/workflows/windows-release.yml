@@ -59,6 +59,13 @@ jobs:
             if (-not $opened) { throw 'EXE 未在 30 秒内打开欢欢主窗口。' }
           } finally {
             @($process) + $children | Select-Object Id, ProcessName, MainWindowTitle | Format-Table
+            if (-not $opened -and $process.MainWindowHandle -ne 0) {
+              Add-Type -AssemblyName UIAutomationClient
+              $window = [System.Windows.Automation.AutomationElement]::FromHandle($process.MainWindowHandle)
+              $window.FindAll([System.Windows.Automation.TreeScope]::Descendants,
+                [System.Windows.Automation.Condition]::TrueCondition) |
+                ForEach-Object { $_.Current.Name }
+            }
             $debugLog = Join-Path $appDir 'launch4j.log'
             if (Test-Path -LiteralPath $debugLog) { Get-Content -LiteralPath $debugLog }
             $children | Stop-Process -Force -ErrorAction SilentlyContinue
