@@ -142,7 +142,9 @@ git push origin v1.0.2
 
 ## 平台验证状态
 
-- 本机 macOS 26.5.2 ARM64：使用 Liberica JDK 17.0.20+10、JavaFX 17.0.20 运行 `clean test`（启用样例及界面验证），25 项测试全部通过。编译产物为 Java 17 字节码（major version 61）。
+- 2026-09-16 小时制改动：本机使用 JDK 17 运行 `./mvnw -DsampleVerification=true test`，32 项通过，1 项界面测试未启用；包含 24 小时前后边界、负数、小数小时及 R/T 两列、标红和科室统计检查。3,413 条原始样例只读验证通过，原件 SHA-256 未改变。
+- 2026-09-16 Windows 构建：[GitHub Actions 验证通过](https://github.com/polarisink/huanhuan/actions/runs/35047623601)。在 Windows Server 2022 x64 上运行 31 项自动化测试（样例和完整界面流程测试未启用），成功生成绿色版，并实际启动 `huanhuan/欢欢.exe`，确认 Java 子进程显示“欢欢”主窗口。工作流另通过 actionlint 检查；本次分支验证未创建发布标签或 Release。
+- 此前本机 macOS 26.5.2 ARM64：使用 Liberica JDK 17.0.20+10、JavaFX 17.0.20 运行 `clean test`（启用样例及界面验证），25 项测试全部通过。编译产物为 Java 17 字节码（major version 61）。
 - 原始样例：3,413 条记录，27 条存在至少一项超时，25 个科室；已独立读取 OOXML 复核所有原有业务字段、补全时间、间隔、排序与科室合格率，原件 SHA-256 未改变。
 - 此前版本已验证 macOS ARM64 打包启动；`dist/` 中旧安装包不包含本次 Java 17 / Windows 7 兼容性调整，不应用于验证新版。
 - 已核对 BellSoft 官方 Windows Full ZIP 内的发行版信息与 JavaFX JMOD 文件；macOS 打包脚本通过 shell 语法检查。

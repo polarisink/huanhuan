@@ -2,8 +2,6 @@ name: Windows x64 Release
 
 on:
   push:
-    branches:
-      - main # 首次注册工作流并验证 Windows 构建，验证后移除此入口。
     tags:
       - '**'
   workflow_dispatch:
@@ -116,6 +114,7 @@ jobs:
           Windows 10 x64 绿色版：下载 huanhuan-win10-x64.zip，完整解压后双击“huanhuan/欢欢.exe”。
 
           已内置 Java 运行时，无需另装 Java。请保留 EXE 旁的 app 和 runtime 文件夹。
+          英文 Windows 建议解压到不含中文的完整路径，避免 JDK 17 的路径编码限制。
 
           入院、出院间隔以小时输出，严格大于 24 小时为不合格，恰好 24 小时合格。
           EOF
