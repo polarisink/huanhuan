@@ -76,6 +76,8 @@
                     <headerType>gui</headerType>
                     <outfile>${project.build.directory}/package-image/huanhuan/huanhuan.exe</outfile>
                     <jar>app/record-timeliness.jar</jar><dontWrapJar>true</dontWrapJar>
+                    <!-- 相对类路径避免 JDK 17 在英文 Windows 中接收中文绝对路径参数。 -->
+                    <classPath><mainClass>cn.huanhuan.app.Launcher</mainClass></classPath>
                     <chdir>.</chdir><errTitle>欢欢</errTitle>
                     <icon>${project.basedir}/packaging/icons/huanhuan.ico</icon>
                     <manifest>${project.basedir}/packaging/windows.manifest</manifest>
