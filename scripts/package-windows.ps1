@@ -38,7 +38,7 @@ if ($LASTEXITCODE -ne 0) { throw 'Maven 构建失败。' }
 
 $imageDir = Join-Path $projectDir 'target\package-image'
 # 英文 Windows 上 JDK 17 / Launch4j 的原生工具可能丢失中文命令行路径。
-# 中间目录和启动器使用 ASCII 名称，工具运行完成后再恢复中文交付名称。
+# 目录保持 ASCII 名称，避免内置 JDK 17 在英文系统中找不到 java.dll；EXE 保留中文名称。
 $appDir = Join-Path $imageDir 'huanhuan'
 $inputDir = Join-Path $appDir 'app'
 $runtimeDir = Join-Path $appDir 'runtime'
@@ -60,8 +60,6 @@ if ($LASTEXITCODE -ne 0 -or -not ($runtimeModules -match '^javafx.controls@17\.'
 if ($LASTEXITCODE -ne 0) { throw 'EXE 启动器生成失败。' }
 if (-not (Test-Path -LiteralPath (Join-Path $appDir 'huanhuan.exe') -PathType Leaf)) { throw '未找到生成的 EXE。' }
 Rename-Item -LiteralPath (Join-Path $appDir 'huanhuan.exe') -NewName "$appName.exe"
-$finalAppDir = Join-Path $imageDir $appName
-Move-Item -LiteralPath $appDir -Destination $finalAppDir
 $archive = Join-Path $distDir "$appName-$appVersion-windows-x64.zip"
-Compress-Archive -LiteralPath $finalAppDir -DestinationPath $archive -Force
-Write-Host "已生成：$archive；解压后运行 $appName\$appName.exe。目标：Windows 7 SP1 / 10 / 11 x64。"
+Compress-Archive -LiteralPath $appDir -DestinationPath $archive -Force
+Write-Host "已生成：$archive；解压后运行 huanhuan\$appName.exe。目标：Windows 7 SP1 / 10 / 11 x64。"

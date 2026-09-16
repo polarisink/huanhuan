@@ -39,7 +39,7 @@ jobs:
         run: ./scripts/package-windows.ps1 -JdkHome $env:JAVA_HOME
       - name: 验证打包后的 EXE 能打开窗口
         run: |
-          $appDir = Join-Path $PWD 'target/package-image/欢欢'
+          $appDir = Join-Path $PWD 'target/package-image/huanhuan'
           $process = Start-Process -FilePath (Join-Path $appDir '欢欢.exe') -ArgumentList '--l4j-debug' -WorkingDirectory $appDir -PassThru
           $children = @()
           try {
@@ -112,7 +112,7 @@ jobs:
         shell: bash
         run: |
           cat > release-notes.md <<'EOF'
-          Windows 10 x64 绿色版：下载 huanhuan-win10-x64.zip，完整解压后双击“欢欢/欢欢.exe”。
+          Windows 10 x64 绿色版：下载 huanhuan-win10-x64.zip，完整解压后双击“huanhuan/欢欢.exe”。
 
           已内置 Java 运行时，无需另装 Java。请保留 EXE 旁的 app 和 runtime 文件夹。
 

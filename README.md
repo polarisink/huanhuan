@@ -89,7 +89,7 @@ bash scripts/package-macos.sh all --check
 powershell -ExecutionPolicy Bypass -File scripts/package-windows.ps1 -JdkHome 'C:\Java\bellsoft-jdk17.0.20-full'
 ```
 
-生成 `dist/欢欢-1.0.1-windows-x64.zip`。解压整个文件夹后双击 `欢欢\欢欢.exe`，无需安装 Java。EXE、app 和 runtime 目录需一起保留；EXE 不是单文件程序。
+生成 `dist/欢欢-1.0.1-windows-x64.zip`。解压整个文件夹后双击 `huanhuan\欢欢.exe`，无需安装 Java。EXE、app 和 runtime 目录需一起保留；EXE 不是单文件程序。为兼容英文 Windows，包内目录使用 `huanhuan`；建议解压到不含中文的完整路径，避免 JDK 17 原生启动器的系统编码限制。
 
 脚本使用 Liberica 自带的 JavaFX 模块运行测试及组装运行时，移除 Maven 下载的 JavaFX JAR，再由 Launch4j 生成带照片图标的 EXE。Launch4j 及其构建工具由 Maven 自动下载，无需另装 Launch4j 或 WiX。启动器只使用随包的 `runtime`，不要求用户配置系统 Java。
 
@@ -106,7 +106,7 @@ git push origin v1.0.2
 
 发布前将 `pom.xml` 中的应用版本更新为对应版本；Windows 打包脚本从该文件读取版本号。工作流使用 Windows Server 2022 x64 构建机、固定的 Liberica JDK 17.0.20+10 Full，执行自动化测试、生成 EXE、验证主窗口启动，成功后创建标签对应的 GitHub Release，附上 `huanhuan-win10-x64.zip` 和 `SHA256SUMS.txt`。目标为 Windows 10 x64，构建机启动检查不能代替 Windows 10 实机验收。发行包未做代码签名。
 
-下载 ZIP 并完整解压后运行 `欢欢/欢欢.exe`；EXE 需要同包的 `app` 和 `runtime` 文件夹。也可以在 GitHub Actions 的 **Windows x64 Release → Run workflow** 手动验证构建：选择分支时只提供构建产物，选择标签时同时发布 Release。相同标签重新运行时更新 Release 附件，不重复创建 Release。
+下载 ZIP 并完整解压后运行 `huanhuan/欢欢.exe`；EXE 需要同包的 `app` 和 `runtime` 文件夹。也可以在 GitHub Actions 的 **Windows x64 Release → Run workflow** 手动验证构建：选择分支时只提供构建产物，选择标签时同时发布 Release。相同标签重新运行时更新 Release 附件，不重复创建 Release。
 
 自动发布使用 GitHub 自动提供的 `GITHUB_TOKEN`，无需配置个人令牌；只有发布任务有 `contents: write` 权限。JDK Full 的配置依据：[setup-java 官方说明](https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md)。
 
