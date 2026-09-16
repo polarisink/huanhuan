@@ -59,12 +59,15 @@ jobs:
             if (-not $opened) { throw 'EXE 未在 30 秒内打开欢欢主窗口。' }
           } finally {
             @($process) + $children | Select-Object Id, ProcessName, MainWindowTitle | Format-Table
-            if (-not $opened -and $process.MainWindowHandle -ne 0) {
-              Add-Type -AssemblyName UIAutomationClient
-              $window = [System.Windows.Automation.AutomationElement]::FromHandle($process.MainWindowHandle)
-              $window.FindAll([System.Windows.Automation.TreeScope]::Descendants,
-                [System.Windows.Automation.Condition]::TrueCondition) |
-                ForEach-Object { $_.Current.Name }
+            if (-not $opened) {
+              $errorLog = Join-Path $PWD 'target/java-startup-error.log'
+              $probe = Start-Process -FilePath (Join-Path $appDir 'runtime/bin/java.exe') -WorkingDirectory $appDir -PassThru `
+                -ArgumentList '--add-modules=javafx.controls -Dfile.encoding=UTF-8 -cp app/record-timeliness.jar cn.huanhuan.app.Launcher' `
+                -RedirectStandardError $errorLog
+              Start-Sleep -Seconds 5
+              Get-Content -LiteralPath $errorLog
+              $probe.Refresh()
+              if (-not $probe.HasExited) { Stop-Process -Id $probe.Id -Force }
             }
             $debugLog = Join-Path $appDir 'launch4j.log'
             if (Test-Path -LiteralPath $debugLog) { Get-Content -LiteralPath $debugLog }
