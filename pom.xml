@@ -74,7 +74,7 @@
                 <artifactId>launch4j-maven-plugin</artifactId><version>2.7.0</version>
                 <configuration>
                     <headerType>gui</headerType>
-                    <outfile>${project.build.directory}/package-image/欢欢/欢欢.exe</outfile>
+                    <outfile>${project.build.directory}/package-image/huanhuan/huanhuan.exe</outfile>
                     <jar>app/record-timeliness.jar</jar><dontWrapJar>true</dontWrapJar>
                     <chdir>.</chdir><errTitle>欢欢</errTitle>
                     <icon>${project.basedir}/packaging/icons/huanhuan.ico</icon>
